@@ -180,6 +180,7 @@ namespace ImageGalleryProject
             this._search.TabIndex = 0;
             this._search.TabStop = false;
             this._search.Click += new System.EventHandler(this._search_ClickAsync);
+            this._search.Paint += new System.Windows.Forms.PaintEventHandler(this._search_Paint);
             // 
             // maskedTextBox1
             // 
@@ -213,6 +214,7 @@ namespace ImageGalleryProject
             this._exportImage.TabIndex = 3;
             this._exportImage.TabStop = false;
             this._exportImage.Click += new System.EventHandler(this._exportImage_Click);
+            this._exportImage.Paint += new System.Windows.Forms.PaintEventHandler(this._exportImage_Paint);
             // 
             // _imageTileControl
             // 

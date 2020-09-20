@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;using C1.Win.C1Tile;
+using System.IO;
+using C1.Win.C1Tile;
 
 namespace ImageGalleryProject
 {
@@ -18,9 +19,12 @@ namespace ImageGalleryProject
             InitializeComponent();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e) //OnSearchPanelPaint
         {
-
+            Rectangle r = _search.Bounds;
+            r.Inflate(3, 3);
+            Pen p = new Pen(Color.LightGray);
+            e.Graphics.DrawRectangle(p, r);
         }
 
 
@@ -40,13 +44,12 @@ namespace ImageGalleryProject
         private async void _search_ClickAsync(object sender, EventArgs e) // OnSearchClick
         {
             statusStrip1.Visible = true;  // to visible the status strip.
-            imagesList = await
-
-            datafetch.GetImageData(_search.Text); // method to fetch the image 
+            imagesList = await datafetch.GetImageData(_search.Text); // method to fetch the image 
 
             AddTiles(imagesList);
             statusStrip1.Visible = false;
-        }
+        }
+
 
 
 
@@ -77,7 +80,7 @@ namespace ImageGalleryProject
             ConvertToPdf(images);  // method to convert to pdf
 
             // To Save the Image in save file dialoge
-        SaveFileDialog saveFile = new SaveFileDialog();
+          SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.DefaultExt = "pdf";
             saveFile.Filter = "PDF files (*.pdf)|*.pdf*";
 
@@ -137,25 +140,27 @@ namespace ImageGalleryProject
 
         private void _imageTileControl_Paint(object sender, PaintEventArgs e)
         {
+            Pen p = new Pen(Color.LightGray);
+            e.Graphics.DrawLine(p, 0, 43, 800, 43);
 
         }
 
 
-       
-        
-        
 
 
 
-        
+
+
+
+
         // add images to the Tiles
 
-         private void AddTiles(List<ImageItem> imageList)
+        private void AddTiles(List<ImageItem> imageList)
         {
             _imageTileControl.Groups[0].Tiles.Clear();  // clearing all the images
             
 
-    // Now insert all the images one by one in the tile which are present in the list
+    // Now loop all the images  which are present in the list snd insert in tiles
             foreach (var imageitem in imageList)
             {
                 Tile tile = new Tile();
@@ -175,7 +180,26 @@ namespace ImageGalleryProject
             }
         }
 
-        
-        
+        private void _search_Paint(object sender, PaintEventArgs e)
+        {
+            Rectangle r = _search.Bounds;
+            r.Inflate(3, 3);
+            Pen p = new Pen(Color.LightGray);
+            e.Graphics.DrawRectangle(p, r);
+
+        }
+
+        private void _exportImage_Paint(object sender, PaintEventArgs e)
+        {
+            Rectangle r = new Rectangle(_exportImage.Location.X,_exportImage.Location.Y, _exportImage.Width, _exportImage.Height);
+            r.X -= 29;
+            r.Y -= 3;
+            r.Width--;
+            r.Height--;
+            Pen p = new Pen(Color.LightGray);
+            e.Graphics.DrawRectangle(p, r);
+            e.Graphics.DrawLine(p, new Point(0, 43), new Point(this.Width, 43));
+
+        }
     }
 }
