@@ -38,7 +38,7 @@ namespace ImageGalleryProject
         private async void _search_ClickAsync(object sender, EventArgs e) // OnSearchClick
         {
             statusStrip1.Visible = true;  // to visible the status strip.
-            imagesList = await datafetch.GetImageData(_search.Text); // method to fetch the image 
+            imagesList = await datafetch.GetImageData(_searchBox.Text); // method to fetch the image 
 
             AddTiles(imagesList); // image Added to the tiles
             statusStrip1.Visible = false;
@@ -141,9 +141,8 @@ namespace ImageGalleryProject
         {
             // Draw the line 
             Pen p = new Pen(Color.Gray);
-            e.Graphics.DrawLine(p, 0, 50, 800, 50);
-             
-        }
+            e.Graphics.DrawLine(p, 0, 54, 800, 54);
+         }
 
 
 
@@ -200,5 +199,6 @@ namespace ImageGalleryProject
            
 
         }
+       
     }
 }
