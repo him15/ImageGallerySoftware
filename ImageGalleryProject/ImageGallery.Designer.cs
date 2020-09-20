@@ -32,9 +32,9 @@ namespace ImageGalleryProject
         /// </summary>
         private void InitializeComponent()
         {
-            C1.Win.C1Tile.PanelElement panelElement2 = new C1.Win.C1Tile.PanelElement();
-            C1.Win.C1Tile.ImageElement imageElement2 = new C1.Win.C1Tile.ImageElement();
-            C1.Win.C1Tile.TextElement textElement2 = new C1.Win.C1Tile.TextElement();
+            C1.Win.C1Tile.PanelElement panelElement3 = new C1.Win.C1Tile.PanelElement();
+            C1.Win.C1Tile.ImageElement imageElement3 = new C1.Win.C1Tile.ImageElement();
+            C1.Win.C1Tile.TextElement textElement3 = new C1.Win.C1Tile.TextElement();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -117,7 +117,6 @@ namespace ImageGalleryProject
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(280, 34);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel4
             // 
@@ -180,14 +179,12 @@ namespace ImageGalleryProject
             this._search.TabIndex = 0;
             this._search.TabStop = false;
             this._search.Click += new System.EventHandler(this._search_ClickAsync);
-            this._search.Paint += new System.Windows.Forms.PaintEventHandler(this._search_Paint);
             // 
             // maskedTextBox1
             // 
             this.maskedTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.maskedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maskedTextBox1.Location = new System.Drawing.Point(421, 19);
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(244, 20);
@@ -210,7 +207,7 @@ namespace ImageGalleryProject
             this._exportImage.Margin = new System.Windows.Forms.Padding(0);
             this._exportImage.Name = "_exportImage";
             this._exportImage.Size = new System.Drawing.Size(147, 29);
-            this._exportImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this._exportImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this._exportImage.TabIndex = 3;
             this._exportImage.TabStop = false;
             this._exportImage.Click += new System.EventHandler(this._exportImage_Click);
@@ -225,11 +222,11 @@ namespace ImageGalleryProject
             // 
             // 
             // 
-            panelElement2.Alignment = System.Drawing.ContentAlignment.BottomLeft;
-            panelElement2.Children.Add(imageElement2);
-            panelElement2.Children.Add(textElement2);
-            panelElement2.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this._imageTileControl.DefaultTemplate.Elements.Add(panelElement2);
+            panelElement3.Alignment = System.Drawing.ContentAlignment.BottomLeft;
+            panelElement3.Children.Add(imageElement3);
+            panelElement3.Children.Add(textElement3);
+            panelElement3.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this._imageTileControl.DefaultTemplate.Elements.Add(panelElement3);
             this._imageTileControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._imageTileControl.Groups.Add(this.group1);
             this._imageTileControl.Location = new System.Drawing.Point(0, 0);
@@ -246,7 +243,6 @@ namespace ImageGalleryProject
             // group1
             // 
             this.group1.Name = "group1";
-            this.group1.Text = "Group 1";
             this.group1.Tiles.Add(this.tile1);
             this.group1.Tiles.Add(this.tile2);
             this.group1.Tiles.Add(this.tile3);

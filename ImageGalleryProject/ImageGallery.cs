@@ -19,13 +19,7 @@ namespace ImageGalleryProject
             InitializeComponent();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e) //OnSearchPanelPaint
-        {
-            Rectangle r = _search.Bounds;
-            r.Inflate(3, 3);
-            Pen p = new Pen(Color.LightGray);
-            e.Graphics.DrawRectangle(p, r);
-        }
+      
 
 
         // Object of data Fetcher clss 
@@ -46,7 +40,7 @@ namespace ImageGalleryProject
             statusStrip1.Visible = true;  // to visible the status strip.
             imagesList = await datafetch.GetImageData(_search.Text); // method to fetch the image 
 
-            AddTiles(imagesList);
+            AddTiles(imagesList); // image Added to the tiles
             statusStrip1.Visible = false;
         }
 
@@ -64,7 +58,7 @@ namespace ImageGalleryProject
 
 
 
-        // Export to pdf click Event handler
+        // --------------Export to pdf click Event handler
         private void _exportImage_Click(object sender, EventArgs e)
         {
             List<Image> images = new List<Image>();
@@ -72,18 +66,21 @@ namespace ImageGalleryProject
             //Iteration through all the Tiles using for each
             foreach (Tile tile in _imageTileControl.Groups[0].Tiles)
             {
+                // if the tile is checked then add that image to the list
                 if (tile.Checked)
                 {
                     images.Add(tile.Image);
                 }
             }
+
             ConvertToPdf(images);  // method to convert to pdf
 
-            // To Save the Image in save file dialoge
+            // To Save the Image it opens the save file Dialoge
           SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.DefaultExt = "pdf";
-            saveFile.Filter = "PDF files (*.pdf)|*.pdf*";
+            saveFile.DefaultExt = "pdf"; // extenstion
+            saveFile.Filter = "PDF files (*.pdf)|*.pdf*"; 
 
+            // if we press OK then it save the pdf
             if (saveFile.ShowDialog() == DialogResult.OK)
             {
                
@@ -96,7 +93,7 @@ namespace ImageGalleryProject
 
 
 
-
+        //-----------------------Convert to PDF--------------------
 
         private void ConvertToPdf(List<Image> images)
         {
@@ -104,11 +101,13 @@ namespace ImageGalleryProject
             bool firstPage = true;
             foreach (var selectedimg in images)
             {
+                // not to create the page for 1st image
                 if (!firstPage)
                 {
                     imagePdfDocument.NewPage();
                 }
                 firstPage = false;
+                // change the rectangle Structure in specific amount
                 rect.Inflate(-72, -72);
                 imagePdfDocument.DrawImage(selectedimg, rect);
             }
@@ -140,9 +139,10 @@ namespace ImageGalleryProject
 
         private void _imageTileControl_Paint(object sender, PaintEventArgs e)
         {
-            Pen p = new Pen(Color.LightGray);
-            e.Graphics.DrawLine(p, 0, 43, 800, 43);
-
+            // Draw the line 
+            Pen p = new Pen(Color.Gray);
+            e.Graphics.DrawLine(p, 0, 50, 800, 50);
+             
         }
 
 
@@ -180,25 +180,24 @@ namespace ImageGalleryProject
             }
         }
 
-        private void _search_Paint(object sender, PaintEventArgs e)
-        {
-            Rectangle r = _search.Bounds;
-            r.Inflate(3, 3);
-            Pen p = new Pen(Color.LightGray);
-            e.Graphics.DrawRectangle(p, r);
+        
 
-        }
+
+
+
 
         private void _exportImage_Paint(object sender, PaintEventArgs e)
         {
-            Rectangle r = new Rectangle(_exportImage.Location.X,_exportImage.Location.Y, _exportImage.Width, _exportImage.Height);
-            r.X -= 29;
-            r.Y -= 3;
+            // create rectangle in on Export btn
+           Rectangle r = new Rectangle(_exportImage.Location.X,_exportImage.Location.Y, _exportImage.Width, _exportImage.Height);
+           r.X += 1;
+            r.Y += 1;
             r.Width--;
             r.Height--;
             Pen p = new Pen(Color.LightGray);
             e.Graphics.DrawRectangle(p, r);
-            e.Graphics.DrawLine(p, new Point(0, 43), new Point(this.Width, 43));
+            e.Graphics.DrawLine(p, new Point(0,28), new Point(this.Width, 28));
+           
 
         }
     }
