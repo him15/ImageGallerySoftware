@@ -1,5 +1,6 @@
 ﻿using C1.C1Pdf;
 using C1.Win.C1Tile;
+using System;
 using System.Windows.Forms;
 
 namespace ImageGalleryProject
@@ -61,9 +62,10 @@ namespace ImageGalleryProject
         private void InitializeComponent()
         {
 
-      
+            Load += new EventHandler(ImageGallery_LoadAsync);
 
-      //----------------ALL THE OBJECTS OF THE ELEMENT------------------------
+
+            //----------------ALL THE OBJECTS OF THE ELEMENT------------------------
             PanelElement panelElement1 = new PanelElement();
             ImageElement imageElement1 = new ImageElement();
             TextElement textElement1 = new TextElement();
@@ -140,7 +142,7 @@ namespace ImageGalleryProject
 
 
 
-            //---------- panel1-------------
+            //---------- panel1
             // 
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -254,7 +256,7 @@ namespace ImageGalleryProject
 
             //----------------------------exportImage-----------------
             this._exportImage.Dock = DockStyle.Fill;
-            this._exportImage.Image = global::ImageGalleryProject.Properties.Resources.xport;
+            this._exportImage.Image = global::ImageGalleryProject.Properties.Resources.exprt;
             this._exportImage.Location = new System.Drawing.Point(0, 0);
             this._exportImage.Margin = new Padding(0);
             this._exportImage.Name = "_exportImage";
@@ -390,7 +392,7 @@ namespace ImageGalleryProject
             this.ResumeLayout(false);
 
        
-    //---------------------ADD COMPONENT TO FORM-------------------------
+    //---------------------ADD COMPONENT TO FORM--------------------
 
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -409,9 +411,21 @@ namespace ImageGalleryProject
 
         }
 
+
+
+
+        // load Event handler (Show images in tile while loading the application)
+        private async void ImageGallery_LoadAsync(object sender, System.EventArgs e)
+        {
+            statusStrip1.Visible = true;
+            imagesList = await
+           datafetch.GetImageData(_searchBox.Text);
+            AddTiles(imagesList);
+            statusStrip1.Visible = false;
+        }
         #endregion
 
-       
+
     }
 }
 

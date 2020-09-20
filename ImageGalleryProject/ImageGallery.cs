@@ -29,6 +29,7 @@ namespace ImageGalleryProject
         List<ImageItem> imagesList;
         int checkedItems = 0;
 
+        // selected image List 
 
 
 
@@ -80,7 +81,7 @@ namespace ImageGalleryProject
             saveFile.DefaultExt = "pdf"; // extenstion
             saveFile.Filter = "PDF files (*.pdf)|*.pdf*"; 
 
-            // if we press OK then it save the pdf
+            // if we press OK then it save the pdf(SAVE SELECTED IMAGE TO DISK)
             if (saveFile.ShowDialog() == DialogResult.OK)
             {
                
