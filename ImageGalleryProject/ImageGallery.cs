@@ -17,6 +17,9 @@ namespace ImageGalleryProject
         public ImageGallery()
         {
             InitializeComponent();
+
+            // load event handler
+            Load += new EventHandler(ImageGallery_LoadAsync);
         }
 
       
@@ -163,6 +166,16 @@ namespace ImageGalleryProject
     // Now loop all the images  which are present in the list snd insert in tiles
             foreach (var imageitem in imageList)
             {
+                
+                //  ------------Aspect Ratio-------
+
+                    // logic - find the actual width of the image and then change the size of 
+                    //          the tiles according to it.
+
+
+                //--------------------------------------
+
+
                 Tile tile = new Tile();
                 tile.HorizontalSize = 2;
                 tile.VerticalSize = 2;
@@ -185,7 +198,7 @@ namespace ImageGalleryProject
 
 
 
-
+    // Draw Rectangle border around Export Image button
         private void _exportImage_Paint(object sender, PaintEventArgs e)
         {
             // create rectangle in on Export btn
@@ -200,6 +213,36 @@ namespace ImageGalleryProject
            
 
         }
-       
+
+
+
+        // load Event handler (Show images in tile while loading the application)
+        private async void ImageGallery_LoadAsync(object sender, System.EventArgs e)
+        {
+            statusStrip1.Visible = true;
+            imagesList = await
+           datafetch.GetImageData(_searchBox.Text);
+            AddTiles(imagesList);
+            statusStrip1.Visible = false;
+        }
+
+        private Bitmap MyImage;
+//------------------------ASPECT RATIO OF THE image-------------------
+      //  public void aspectRatioOfMyImage(String fileToDisplay, int xSize, int ySize)
+      //  {
+            // Sets up an image object to be displayed.
+          //  if (MyImage != null)
+           // {
+           //     MyImage.Dispose();
+           // }
+
+            // Stretches the image to fit the pictureBox.
+            //Tile tile = new Tile();
+           // tile1.SizeMode = PictureBoxSizeMode.StretchImage;
+           // MyImage = new Bitmap(fileToDisplay);
+           // pictureBox1.ClientSize = new Size(xSize, ySize);
+            //pictureBox1.Image = (Image)MyImage;
+       // }
+
     }
 }

@@ -62,7 +62,7 @@ namespace ImageGalleryProject
         private void InitializeComponent()
         {
 
-            Load += new EventHandler(ImageGallery_LoadAsync);
+            
 
 
             //----------------ALL THE OBJECTS OF THE ELEMENT------------------------
@@ -414,15 +414,7 @@ namespace ImageGalleryProject
 
 
 
-        // load Event handler (Show images in tile while loading the application)
-        private async void ImageGallery_LoadAsync(object sender, System.EventArgs e)
-        {
-            statusStrip1.Visible = true;
-            imagesList = await
-           datafetch.GetImageData(_searchBox.Text);
-            AddTiles(imagesList);
-            statusStrip1.Visible = false;
-        }
+        
         #endregion
 
 

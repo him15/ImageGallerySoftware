@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.IO;
+using System.Windows.Forms;
 //
 
 namespace ImageGalleryProject
@@ -30,10 +31,18 @@ namespace ImageGalleryProject
                     readText = await c.GetStringAsync(url);
                 }
             }
-            catch
+            catch (System.IO.IOException )
             {
-                readText =File.ReadAllText(@"Data/sampleData.json");
+                MessageBox.Show("IO Exception Occured");
             }
+
+ 
+            catch (Exception ex)
+            {
+                    readText =File.ReadAllText(@"Data/sampleData.json");
+
+            }
+           
             return readText;
         }
 
