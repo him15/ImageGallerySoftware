@@ -34,7 +34,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="C1.C1Pdf.4.5.2, Version=4.5.20202.438, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
-    <Reference Include="C1.C1Zip.4, Version=4.0.20202.438, Culture=neutral, PublicKeyToken=79882d576c6336da" />
     <Reference Include="C1.C1Zip.4.5.2, Version=4.5.20202.438, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.4.5.2, Version=4.5.20202.438, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04, processorArchitecture=MSIL" />
     <Reference Include="C1.Win.C1DX.4.5.2, Version=4.5.20202.438, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04, processorArchitecture=MSIL" />

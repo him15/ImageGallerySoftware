@@ -166,19 +166,40 @@ namespace ImageGalleryProject
     // Now loop all the images  which are present in the list snd insert in tiles
             foreach (var imageitem in imageList)
             {
-                
-                //  ------------Aspect Ratio-------
 
-                    // logic - find the actual width of the image and then change the size of 
-                    //          the tiles according to it.
+                //  ------------Aspect Ratio-------------------------
 
+                // logic - find the actual width of the image and then change the size of 
+                //          the tiles according to it.
+                var ab = imageitem.Base64;
 
-                //--------------------------------------
-
-
+                byte[] imageData = ab;
+                MemoryStream imageStream = new MemoryStream(imageData);
+                Bitmap image = new Bitmap(imageStream);
+                int width = image.Width;
+                int height = image.Height;
                 Tile tile = new Tile();
-                tile.HorizontalSize = 2;
-                tile.VerticalSize = 2;
+
+                if (width > height)
+                {
+                    tile.HorizontalSize = 3;
+                    tile.VerticalSize = 2;
+                }
+                else if (height > width)
+                {
+                    tile.HorizontalSize = 2;
+                    tile.VerticalSize = 3;
+                }
+                else {
+                    tile.HorizontalSize = 2;
+                    tile.VerticalSize = 2;
+                }
+                //-----------------------------------------------------
+
+
+                
+                
+                
                 _imageTileControl.Groups[0].Tiles.Add(tile);
 
                 // convert and retrive image from base64 using Memory Stream
@@ -227,22 +248,23 @@ namespace ImageGalleryProject
         }
 
         private Bitmap MyImage;
-//------------------------ASPECT RATIO OF THE image-------------------
-      //  public void aspectRatioOfMyImage(String fileToDisplay, int xSize, int ySize)
-      //  {
-            // Sets up an image object to be displayed.
-          //  if (MyImage != null)
-           // {
-           //     MyImage.Dispose();
-           // }
+        private object encoding;
+        //------------------------ASPECT RATIO OF THE image-------------------
+        //  public void aspectRatioOfMyImage(String fileToDisplay, int xSize, int ySize)
+        //  {
+        // Sets up an image object to be displayed.
+        //  if (MyImage != null)
+        // {
+        //     MyImage.Dispose();
+        // }
 
-            // Stretches the image to fit the pictureBox.
-            //Tile tile = new Tile();
-           // tile1.SizeMode = PictureBoxSizeMode.StretchImage;
-           // MyImage = new Bitmap(fileToDisplay);
-           // pictureBox1.ClientSize = new Size(xSize, ySize);
-            //pictureBox1.Image = (Image)MyImage;
-       // }
+        // Stretches the image to fit the pictureBox.
+        //Tile tile = new Tile();
+        // tile1.SizeMode = PictureBoxSizeMode.StretchImage;
+        // MyImage = new Bitmap(fileToDisplay);
+        // pictureBox1.ClientSize = new Size(xSize, ySize);
+        //pictureBox1.Image = (Image)MyImage;
+        // }
 
     }
 }
