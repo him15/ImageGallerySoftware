@@ -171,33 +171,50 @@ namespace ImageGalleryProject
 
                 // logic - find the actual width of the image and then change the size of 
                 //          the tiles according to it.
-                var ab = imageitem.Base64;
 
+
+                // Find the Actual Dimension of the image
+                var ab = imageitem.Base64;
                 byte[] imageData = ab;
                 MemoryStream imageStream = new MemoryStream(imageData);
                 Bitmap image = new Bitmap(imageStream);
                 int width = image.Width;
                 int height = image.Height;
+                //--------
+                
+
                 Tile tile = new Tile();
 
+                // set the size
                 if (width > height)
                 {
-                    tile.HorizontalSize = 3;
-                    tile.VerticalSize = 2;
+                    if (width<1600) {
+                        tile.HorizontalSize = 2;
+                        tile.VerticalSize = 1;
+                    }
+                    else {
+                        tile.HorizontalSize = 3;
+                        tile.VerticalSize = 2;
+                    }
                 }
                 else if (height > width)
                 {
-                    tile.HorizontalSize = 2;
-                    tile.VerticalSize = 3;
+                    if (height<1600) {
+                        tile.HorizontalSize = 1;
+                        tile.VerticalSize = 2;
+                    }
+                    else {
+                        tile.HorizontalSize = 2;
+                        tile.VerticalSize = 3;
+                    }
                 }
                 else {
                     tile.HorizontalSize = 2;
                     tile.VerticalSize = 2;
                 }
-                //-----------------------------------------------------
 
 
-                
+             //---------------------------------------------------- 
                 
                 
                 _imageTileControl.Groups[0].Tiles.Add(tile);
